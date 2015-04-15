@@ -41,6 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    // MARK: - WatchKit
+    
+    func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
+        
+        let watchKitInformation = WatchKitInfo(playerDictionary: userInfo!, reply: reply)
+        NSNotificationCenter.defaultCenter().postNotificationName("WatchKitDidMakeRequest", object: watchKitInformation)
+    }
 }
 
